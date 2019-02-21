@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Folder Include="Data\Handlers\" />
+    <Folder Include="Data\Model\" />
+    <Folder Include="Entity\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="wwwroot\Assets\JQuery\" />
+    <Folder Include="wwwroot\Scripts\" />
   </ItemGroup>
 
   <ItemGroup>
