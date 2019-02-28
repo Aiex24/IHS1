@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConfigurationManagement", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationManager", "ConfigurationManager\ConfigurationManager.csproj", "{04166183-5F97-49E9-9A74-498551038D50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer", "Setup Manager\Installer.csproj", "{0EF190F6-B6EA-4574-941A-EF358543BFA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Setup_Manager", "Setup Manager\Setup_Manager.csproj", "{0EF190F6-B6EA-4574-941A-EF358543BFA8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{FDAD8BC6-A098-4F50-87B6-7056DFAE0743}"
 EndProject
