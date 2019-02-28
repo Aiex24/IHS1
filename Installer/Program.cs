@@ -6,9 +6,9 @@ namespace Installer
 {
     class Program
     {
-        private const string connStringFirstInstall = @"";
-        private const string connString = @"";
-        private const string currentVersion = "1.0.0";
+		private const string connStringFirstInstall = @"Server=localhost;Database=master;Integrated Security=True; MultipleActiveResultSets=True;";
+		private const string connString = @"Server=localhost;Database=IHS1;Integrated Security=True;MultipleActiveResultSets=True;";
+		private const string currentVersion = "1.0.0";
 
         static void Main(string[] args)
         {
