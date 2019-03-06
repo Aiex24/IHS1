@@ -4,14 +4,6 @@ namespace UtilitiesMisc
 {
     public class ConsoleUtils
     {
-        public enum MessageOriginColor
-        {
-            Text = ConsoleColor.White,
-            System = ConsoleColor.DarkGray,
-            Error = ConsoleColor.Red,
-            Default = ConsoleColor.White
-        }
-
         public static void Print(string text, MessageOriginColor messageOrigin, bool newLineAfterPrint)
         {
             ConsoleColor currentColor = Console.ForegroundColor;

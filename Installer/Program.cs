@@ -12,14 +12,14 @@ namespace Installer
 
         static void Main(string[] args)
         {
-            ConsoleUtils.Print("Create new database? [Y]: ", ConsoleUtils.MessageOriginColor.Text, false);
+            ConsoleUtils.Print("Create new database? [Y]: ", MessageOriginColor.Text, false);
             var answer = Console.ReadKey().Key;
             Console.WriteLine();
             var dbName = "ihs1";
             switch (answer)
             {
                 case ConsoleKey.Y:
-                    ConsoleUtils.Print("Starting installation...", ConsoleUtils.MessageOriginColor.System, true);
+                    ConsoleUtils.Print("Starting installation...", MessageOriginColor.System, true);
                     Install(dbName);
                     break;
                 default:
@@ -37,18 +37,18 @@ namespace Installer
                 while (versionReader.Read())
                 {
                     var versionUsedOnServer = (string)versionReader["VersionNumber"];
-                    ConsoleUtils.Print($"The currently installed version is {currentVersion}", ConsoleUtils.MessageOriginColor.System, true);
+                    ConsoleUtils.Print($"The currently installed version is {currentVersion}", MessageOriginColor.System, true);
                     var usingLatestVersion = int.Parse(versionUsedOnServer.Replace(".", "")) == int.Parse(currentVersion.Replace(".", ""));
                     if (!usingLatestVersion)
                     {
-                        ConsoleUtils.Print($"WARNING: The currently installed version {versionUsedOnServer} is not the latest one available. Please upgrade to the latest version, {currentVersion}.", ConsoleUtils.MessageOriginColor.System, true);
+                        ConsoleUtils.Print($"WARNING: The currently installed version {versionUsedOnServer} is not the latest one available. Please upgrade to the latest version, {currentVersion}.", MessageOriginColor.System, true);
                     }
                 }
             }
 
             else
             {
-                ConsoleUtils.Print("ERROR: The version number could not be found.", ConsoleUtils.MessageOriginColor.Error, true);
+                ConsoleUtils.Print("ERROR: The version number could not be found.", MessageOriginColor.Error, true);
             }
         }
 
@@ -64,11 +64,11 @@ namespace Installer
             var result = DbHandler.DbHandler.ExecuteNonQuery(connString, "CREATE DATABASE {dbName}", false);
             if (result > -1)
             {
-                ConsoleUtils.Print($"Successfully created database \"{dbName}\".", ConsoleUtils.MessageOriginColor.System, true);
+                ConsoleUtils.Print($"Successfully created database \"{dbName}\".", MessageOriginColor.System, true);
             }
             else
             {
-                ConsoleUtils.Print($"Could not create database \"{dbName}\"!", ConsoleUtils.MessageOriginColor.Error, true);
+                ConsoleUtils.Print($"Could not create database \"{dbName}\"!", MessageOriginColor.Error, true);
             }
         }
     }
