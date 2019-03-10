@@ -5,19 +5,73 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ViewModels="clr-namespace:Setup_Manager.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="336"
-             d:DesignWidth="300"
+             xmlns:ResizeMode="NoResize" Height="450" Width="650"
+             Loaded="Window_Loaded"
              d:DataContext="{d:DesignInstance ViewModels:Initialize}">
+
     <UserControl.InputBindings>
-        <KeyBinding Key="Enter" Command="{Binding ConvertTextCommand}"/>
+
+        <!--<KeyBinding Key="Enter" Command="{Binding StartCommand}"/>-->
     </UserControl.InputBindings>
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0">
+            <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray">
 
-    <StackPanel Height="336">
-        <Label Foreground="Blue" Margin="5,5,5,0">Setup manager</Label>
-        <!--<TextBox Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>-->
-        <Label Foreground="Blue" Margin="5,5,5,0">Log</Label>
-        <ListBox x:Name="LogHistory" ItemsSource="{Binding Log}" Height="200" Margin="5"/>
-        <Button Command="{Binding ConvertTextCommand, UpdateSourceTrigger=PropertyChanged}" Margin="5" Width="80">Start</Button>
-    </StackPanel>
+                <TabItem Header="Settings">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="1" Grid.Column="1">Source:</Label>
+                        <TextBox x:Name="text1" Text="{Binding SetSource, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="2" Margin="2"></TextBox>
+                        <Label Grid.Row="2" Grid.Column="1">Database:</Label>
+                        <TextBox Text="{Binding SetDatabase, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="2" Margin="2"></TextBox>
+                        <Label Grid.Row="3" Grid.Column="1">User:</Label>
+                        <TextBox Text="{Binding SetUser, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="2" Margin="2"></TextBox>
+                        <Label Grid.Row="4" Grid.Column="1">Password:</Label>
+                        <TextBox Text="{Binding SetPassword, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="2" Margin="2"></TextBox>
+                        <Label Grid.Row="5" Grid.Column="1">Trusted connection:</Label>
+                        <CheckBox IsChecked="{Binding SetTrustedConnection, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center"></CheckBox>
+                        <Button Grid.Row="7" Grid.Column="1"  Command="{Binding SaveChangesCommand, UpdateSourceTrigger=PropertyChanged}" Margin="5" Width="80" FontSize="10">Save changes</Button>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="General">
+                    <Grid>
+                        <StackPanel Height="200">
+                            <Label Foreground="Blue" Margin="5,5,5,0">Setup manager</Label>
+                            <!--<TextBox Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>-->
 
+
+                            <Button Command="{Binding StartCommand, UpdateSourceTrigger=PropertyChanged}" Margin="5" Width="80">Start</Button>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Label Foreground="Blue" Margin="5,5,5,0">Log</Label>
+            <ListBox x:Name="LogHistory" ItemsSource="{Binding Log}" Height="160" Margin="5" Background="Black" Foreground="White" FontFamily="Consolas"/>
+        </Grid>
+    </Grid>
 </UserControl>

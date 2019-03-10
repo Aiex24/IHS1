@@ -18,6 +18,8 @@ namespace Setup_Manager.Properties
 	{
 
 		private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+		internal readonly string Database;
+		internal string Source;
 
 		public static Settings Default
 		{
