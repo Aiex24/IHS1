@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Setup_Manager.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
@@ -17,21 +18,56 @@ namespace Setup_Manager.ViewModels
 		private string _user;
 		private bool _trustedConnection;
 		private readonly ObservableCollection<string> _log = new ObservableCollection<string>();
+		private int _selectedIndex;
+		private string _license;
+
 
 		public ICommand StartProcessCommand
 		{
-			get { return new DelegateCommand(StartProgress); }
+			get { return new DelegateCommand(StartProcess); }
 		}
 
-		public void StartProgress()
+		public ICommand InstallCommand
 		{
-			Properties.Settings.Default.Reload();
-			SetSource = Properties.Settings.Default.Source;
-			SetDatabase = Properties.Settings.Default.Database;
+			get { return new DelegateCommand(Check); }
+		}
 
-			SetUser = "anka";
-			SetTrustedConnection = true;
+		public void StartProcess()
+		{
+			SelectedIndex = 1;
+			License = FileHandler.GetText("../../Resources/Files/License.txt");
 
+			var settings = new ReadSettings();
+
+			ConnectionSettings conSettings = new ReadSettings().Get();
+			
+			settings.Reload();
+				
+			SetSource = conSettings.Source;
+			SetDatabase = conSettings.Database;
+			SetUser = conSettings.User;
+			SetPassword = conSettings.Password;
+			SetTrustedConnection = conSettings.TrustedConnection;
+		}
+
+		public int SelectedIndex
+		{
+			get { return _selectedIndex; }
+			set
+			{
+				_selectedIndex = value;
+				RaisePropertyChangedEvent("SelectedIndex");
+			}
+		}
+
+		public string License
+		{
+			get { return _license; }
+			set
+			{
+				_license = value;
+				RaisePropertyChangedEvent("License");
+			}
 		}
 
 		public string SetSource
@@ -87,76 +123,45 @@ namespace Setup_Manager.ViewModels
 
 		public void Check()
 		{
-			_log.Add("Checking installed components...");
 			var connString = ConfigurationManager.ConnectionStrings["CreateDbConnection"].ToString();
-
 			SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connString);
 			builder.InitialCatalog = "master";
-			builder.DataSource = ".";
-			builder.IntegratedSecurity = true;
-			_log.Add(builder.ConnectionString);
+			builder.DataSource = SetSource;
+			builder.IntegratedSecurity = SetTrustedConnection;
 
-			string commandText = "CREATE DATABASE test44";
+			string commandText = $"CREATE DATABASE {SetDatabase}";
 
 			SqlConnection connection = new SqlConnection(builder.ConnectionString);
 
-			if (CheckDatabaseExists(builder.ConnectionString, "test44"))
+			if (CheckDatabaseExists(builder.ConnectionString, SetDatabase))
 			{
-				_log.Add("Database already exist");
+				MessageBox.Show("Database already exist");
 			}
 			else
 			{
-				_log.Add("Creating Database");
+				using (connection)
+				{
+					SqlCommand command = new SqlCommand(commandText, connection);
+					try
+					{
+						connection.Open();
+						Int32 rowsAffected = command.ExecuteNonQuery();
+						MessageBox.Show("Install complete");
+					}
+					catch (Exception ex)
+					{
+						_log.Add(ex.ToString());
+					}
+				}
 			}
-			//using (connection)
-			//{
-			//	SqlCommand command = new SqlCommand(commandText, connection);
-			//	//command.Parameters.Add("%dataBase", SqlDbType.NVarChar);
-			//	//command.Parameters["%dataBase"].Value = database;
-
-			//	try
-			//	{
-			//		connection.Open();
-			//		Int32 rowsAffected = command.ExecuteNonQuery();
-			//	}
-			//	catch (Exception ex)
-			//	{
-			//		_log.Add(ex.ToString());
-			//	}
-			//}
-		}
 
 
-		public void Start()
-		{
-			MessageBox.Show("Application started");
 		}
 
 		public IEnumerable<string> Log
 		{
 			get { return _log; }
 		}
-
-		public ICommand StartCommand
-		{
-			get { return new DelegateCommand(Check); }
-		}
-
-		public ICommand SaveChangesCommand
-		{
-			get { return new DelegateCommand(SaveChanges); }
-		}
-
-		private void SaveChanges()
-		{
-			_log.Add("Saving...");
-			Properties.Settings.Default.Source = _source;
-			Properties.Settings.Default.Save();
-			Properties.Settings.Default.Reload();
-			_log.Add("Saving complete...");
-		}
-
-		/*  public object DataContext { get; private set; */
 
 		public static bool CheckDatabaseExists(string connectionString, string databaseName)
 		{

@@ -63,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ConnectionSettings.cs" />
+    <Compile Include="Models\FileHandler.cs" />
+    <Compile Include="Models\ReadSettings.cs" />
     <Compile Include="ViewModels\Initialize.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
     <Compile Include="ViewModels\ObserveableObject.cs" />
@@ -114,7 +117,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Resource Include="Resources\Images\co.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Files\License.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

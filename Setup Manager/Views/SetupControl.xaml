@@ -5,73 +5,69 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ViewModels="clr-namespace:Setup_Manager.ViewModels"
              mc:Ignorable="d"
-             xmlns:ResizeMode="NoResize" Height="450" Width="650"
+             
+             xmlns:ResizeMode="NoResize"
              Loaded="Window_Loaded"
              d:DataContext="{d:DesignInstance ViewModels:Initialize}">
 
     <UserControl.InputBindings>
-
         <!--<KeyBinding Key="Enter" Command="{Binding StartCommand}"/>-->
     </UserControl.InputBindings>
-    <Grid Background="LightGray">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0">
-            <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray">
+     <Grid Background="#34A7FB" Width="800" Height="600">
+        <TabControl Background="White" SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged}">
+            <TabItem Height="180" Focusable="False">
+                <TabItem.Header>
+                    <Image Source="../Resources/Images/co.png"/>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem Header="Start">
+                <Grid>
+                    <Label Content="Welcome to the IHS Installer" Foreground="Orange" FontWeight="Bold" FontSize="25" Margin="98,44,105,509"></Label>
+                    <TextBlock Margin="105,111,105,437" TextWrapping="Wrap" Foreground="Black" Text="This installer will guide you through the steps required to install IHS on your Webserver" />
+                    <Label FontWeight="Bold" Content="Requirements"  Margin="100,204,390,359"></Label>
+                    <TextBlock Margin="105,235,105,313" TextWrapping="Wrap" Foreground="Black" ><Run Text="Microsoft Internet Information Services "/><LineBreak/><Run Text="Microsoft SQL Server"/></TextBlock>
+                </Grid>
+            </TabItem>
+            <TabItem Header="License">
+                <Grid>
+                    <TextBox Text="{Binding License, UpdateSourceTrigger=PropertyChanged}" Margin="84,58,68,278"></TextBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Login" >
+                <Grid >
+                </Grid>
+            </TabItem>
+            <TabItem Header="Settings" >
+                <Grid>
+                    <Label Margin="78,90,485,472" Height="25">Source:</Label>
+                    <TextBox Text="{Binding SetSource, UpdateSourceTrigger=PropertyChanged}" Height="25" Margin="166,94,329,475"/>
+                    <Label Margin="78,127,471,431" RenderTransformOrigin="0.494,0.102">Database:</Label>
+                    <TextBox Text="{Binding SetDatabase, UpdateSourceTrigger=PropertyChanged}" Height="25" Margin="166,131,329,438"/>
+                    <Label Margin="78,163,471,395" RenderTransformOrigin="0.494,0.102">User:</Label>
+                    <TextBox Text="{Binding SetUser, UpdateSourceTrigger=PropertyChanged}" Height="25" Margin="166,167,329,402"/>
+                    <Label Margin="78,199,471,359" RenderTransformOrigin="0.494,0.102">Password:</Label>
+                    <TextBox Text="{Binding SetPassword, UpdateSourceTrigger=PropertyChanged}" Height="25" Margin="166,203,329,366" FontFamily="ms-appx:///Assets/PassDot.ttf#PassDot"/>
+                    <Label Margin="78,228,471,331" RenderTransformOrigin="0.494,0.102">Trusted:</Label>
+                    <CheckBox IsChecked="{Binding SetTrustedConnection, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="166,237,449,343"></CheckBox>
 
-                <TabItem Header="Settings">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="1" Grid.Column="1">Source:</Label>
-                        <TextBox x:Name="text1" Text="{Binding SetSource, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="2" Margin="2"></TextBox>
-                        <Label Grid.Row="2" Grid.Column="1">Database:</Label>
-                        <TextBox Text="{Binding SetDatabase, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="2" Margin="2"></TextBox>
-                        <Label Grid.Row="3" Grid.Column="1">User:</Label>
-                        <TextBox Text="{Binding SetUser, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="2" Margin="2"></TextBox>
-                        <Label Grid.Row="4" Grid.Column="1">Password:</Label>
-                        <TextBox Text="{Binding SetPassword, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="2" Margin="2"></TextBox>
-                        <Label Grid.Row="5" Grid.Column="1">Trusted connection:</Label>
-                        <CheckBox IsChecked="{Binding SetTrustedConnection, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center"></CheckBox>
-                        <Button Grid.Row="7" Grid.Column="1"  Command="{Binding SaveChangesCommand, UpdateSourceTrigger=PropertyChanged}" Margin="5" Width="80" FontSize="10">Save changes</Button>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="General">
-                    <Grid>
-                        <StackPanel Height="200">
-                            <Label Foreground="Blue" Margin="5,5,5,0">Setup manager</Label>
-                            <!--<TextBox Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>-->
-
-
-                            <Button Command="{Binding StartCommand, UpdateSourceTrigger=PropertyChanged}" Margin="5" Width="80">Start</Button>
-                        </StackPanel>
-                    </Grid>
-                </TabItem>
-            </TabControl>
-        </Grid>
-        <Grid Grid.Row="1">
+                    <Button Command="{Binding SaveChangesCommand, UpdateSourceTrigger=PropertyChanged}" Margin="78,331,471,233" FontSize="10">Next</Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Install" >
+                <Grid>
+                    <Button Command="{Binding InstallCommand, UpdateSourceTrigger=PropertyChanged}" Margin="276,359,276,185" Width="80" RenderTransformOrigin="-1.938,-1.92">Start</Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <!--<StackPanel Height="336">
+            <Label Foreground="Blue" Margin="5,5,5,0">Setup manager</Label>
+            -->
+        <!--<TextBox Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>-->
+        <!--
             <Label Foreground="Blue" Margin="5,5,5,0">Log</Label>
-            <ListBox x:Name="LogHistory" ItemsSource="{Binding Log}" Height="160" Margin="5" Background="Black" Foreground="White" FontFamily="Consolas"/>
-        </Grid>
+            <ListBox x:Name="LogHistory" ItemsSource="{Binding Log}" Height="200" Margin="5"/>
+            <Button Command="{Binding ConvertTextCommand, UpdateSourceTrigger=PropertyChanged}" Margin="5" Width="80">Start</Button>
+            <Button Command="{Binding StartInstallCommand, UpdateSourceTrigger=PropertyChanged}" Margin="5" Width="80">Create</Button>
+        </StackPanel>-->
     </Grid>
 </UserControl>
