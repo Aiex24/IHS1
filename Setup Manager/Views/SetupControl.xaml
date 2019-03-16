@@ -40,11 +40,6 @@
                             </Paragraph>
                         </FlowDocument>
                     </RichTextBox>
-
-                </Grid>
-            </TabItem>
-            <TabItem Header="Login" >
-                <Grid >
                 </Grid>
             </TabItem>
             <TabItem Header="Settings" >
@@ -59,7 +54,6 @@
                     <TextBox Text="{Binding SetPassword, UpdateSourceTrigger=PropertyChanged}" Height="25" Margin="166,203,329,366" FontFamily="ms-appx:///Assets/PassDot.ttf#PassDot"/>
                     <Label Margin="78,228,471,331" RenderTransformOrigin="0.494,0.102">Trusted:</Label>
                     <CheckBox IsChecked="{Binding SetTrustedConnection, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="166,237,449,343"></CheckBox>
-
                     <Button Command="{Binding SaveChangesCommand, UpdateSourceTrigger=PropertyChanged}" Margin="78,331,471,233" FontSize="10">Next</Button>
                 </Grid>
             </TabItem>
