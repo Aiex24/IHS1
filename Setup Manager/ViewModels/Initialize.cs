@@ -20,7 +20,6 @@ namespace Setup_Manager.ViewModels
 		private bool _trustedConnection;
 		private readonly ObservableCollection<string> _log = new ObservableCollection<string>();
 		private int _selectedIndex;
-		private string _license;
 
 		public ICommand StartProcessCommand
 		{
@@ -35,7 +34,6 @@ namespace Setup_Manager.ViewModels
 		public void StartProcess()
 		{
 			SelectedIndex = 1;
-			License = FileHandler.GetText("../../Resources/Files/License.txt");
 			var settings = new ReadSettings();
 			ConnectionSettings conSettings = new ReadSettings().Get();
 			
@@ -55,16 +53,6 @@ namespace Setup_Manager.ViewModels
 			{
 				_selectedIndex = value;
 				RaisePropertyChangedEvent("SelectedIndex");
-			}
-		}
-
-		public string License
-		{
-			get { return _license; }
-			set
-			{
-				_license = value;
-				RaisePropertyChangedEvent("License");
 			}
 		}
 

@@ -30,16 +30,7 @@
             </TabItem>
             <TabItem Header="License">
                 <Grid>
-                    <RichTextBox  Margin="84,58,84,278" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <FlowDocument>
-                            <Paragraph>
-                                <Run FontWeight="Bold" FontSize="18" Text="License" />
-                            </Paragraph>
-                            <Paragraph>
-                                <Run Text="{Binding License, UpdateSourceTrigger=PropertyChanged}" SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"/>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
+                    <RichTextBox x:Name="LicenseBox" Margin="84,58,84,278" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Settings" >
