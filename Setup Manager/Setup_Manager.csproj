@@ -112,6 +112,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\Files\License.rtf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

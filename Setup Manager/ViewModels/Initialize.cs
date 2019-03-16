@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -21,7 +22,6 @@ namespace Setup_Manager.ViewModels
 		private int _selectedIndex;
 		private string _license;
 
-
 		public ICommand StartProcessCommand
 		{
 			get { return new DelegateCommand(StartProcess); }
@@ -36,9 +36,7 @@ namespace Setup_Manager.ViewModels
 		{
 			SelectedIndex = 1;
 			License = FileHandler.GetText("../../Resources/Files/License.txt");
-
 			var settings = new ReadSettings();
-
 			ConnectionSettings conSettings = new ReadSettings().Get();
 			
 			settings.Reload();

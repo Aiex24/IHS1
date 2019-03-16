@@ -1,3 +1,8 @@
-﻿Copyright (c)
-2019
-Test
+﻿
+Most distributed software can be categorized according to its license type (see table).
+
+Two common categories for software under copyright law, and therefore with licenses which grant the licensee specific rights, are proprietary software and free and open-source software (FOSS). The distinct conceptual difference between the two is the granting of rights to modify and re-use a software product obtained by a customer: FOSS software licenses both rights to the customer and therefore bundles the modifiable source code with the software ("open-source"), while proprietary software typically does not license these rights and therefore keeps the source code hidden ("closed source").
+
+In addition to granting rights and imposing restrictions on the use of copyrighted software, software licenses typically contain provisions which allocate liability and responsibility between the parties entering into the license agreement. In enterprise and commercial software transactions, these terms often include limitations of liability, warranties and warranty disclaimers, and indemnity if the software infringes intellectual property rights of anyone.
+
+Unlicensed software outside the scope of copyright protection is either public domain software (PD) or software which is non-distributed, non-licensed and handled as internal business trade secret.[1] Contrary to popular belief, distributed unlicensed software (not in the public domain) is fully copyright protected, and therefore legally unusable (as no usage rights at all are granted by a license) until it passes into public domain after the copyright term has expired.[3] Examples of this are unauthorized software leaks or software projects which are placed on public software repositories like GitHub without a specified license.[4][5] As voluntarily handing software into the public domain (before reaching the copyright term) is problematic in some jurisdictions (for instance the Law of Germany), there are also licenses granting PD-like rights, for instance the CC0 or WTFPL.

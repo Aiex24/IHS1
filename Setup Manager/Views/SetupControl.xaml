@@ -13,7 +13,7 @@
     <UserControl.InputBindings>
         <!--<KeyBinding Key="Enter" Command="{Binding StartCommand}"/>-->
     </UserControl.InputBindings>
-     <Grid Background="#34A7FB" Width="800" Height="600">
+    <Grid Background="#34A7FB" Width="800" Height="600">
         <TabControl Background="White" SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged}">
             <TabItem Height="180" Focusable="False">
                 <TabItem.Header>
@@ -30,7 +30,17 @@
             </TabItem>
             <TabItem Header="License">
                 <Grid>
-                    <TextBox Text="{Binding License, UpdateSourceTrigger=PropertyChanged}" Margin="84,58,68,278"></TextBox>
+                    <RichTextBox  Margin="84,58,84,278" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run FontWeight="Bold" FontSize="18" Text="License" />
+                            </Paragraph>
+                            <Paragraph>
+                                <Run Text="{Binding License, UpdateSourceTrigger=PropertyChanged}" SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+
                 </Grid>
             </TabItem>
             <TabItem Header="Login" >
@@ -55,7 +65,8 @@
             </TabItem>
             <TabItem Header="Install" >
                 <Grid>
-                    <Button Command="{Binding InstallCommand, UpdateSourceTrigger=PropertyChanged}" Margin="276,359,276,185" Width="80" RenderTransformOrigin="-1.938,-1.92">Start</Button>
+                    <Button Command="{Binding InstallCommand, UpdateSourceTrigger=PropertyChanged}" Margin="276,359,276,185" Width="80" RenderTransformOrigin="-1.938,-1.92">Start
+                    </Button>
                 </Grid>
             </TabItem>
         </TabControl>
