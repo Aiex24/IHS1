@@ -70,9 +70,9 @@
                 <ColumnDefinition Width="638"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1" Background="White">
-                <Button Content="&lt; Back"  Margin="314,32,239,21"/>
+                <Button Content="{Binding CB.Content,  UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding CB.IsEnabled}" Margin="314,32,239,21"/>
                 <Button Content="Next &gt;"   Margin="416,32,136,21"/>
-                <Button Content="Cansel" Margin="521,32,34,21"/>
+                <Button Content="Cancel" Margin="521,32,34,21"/>
             </Grid>
         </Grid>
     </Grid>

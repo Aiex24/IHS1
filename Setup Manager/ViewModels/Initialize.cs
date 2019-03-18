@@ -1,4 +1,5 @@
 ﻿using Setup_Manager.Models;
+using Setup_Manager.Models.Elements;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,7 @@ namespace Setup_Manager.ViewModels
 		private string _password;
 		private string _user;
 		private bool _trustedConnection;
+		private EButton _cb= new EButton();
 		private readonly ObservableCollection<string> _log = new ObservableCollection<string>();
 		private int _selectedIndex;
 
@@ -34,6 +36,8 @@ namespace Setup_Manager.ViewModels
 		public void StartProcess()
 		{
 			SelectedIndex = 1;
+			CB.Content = "< Back";
+			CB.IsEnabled = false;
 			var settings = new ReadSettings();
 			ConnectionSettings conSettings = new ReadSettings().Get();
 			
@@ -44,6 +48,16 @@ namespace Setup_Manager.ViewModels
 			SetUser = conSettings.User;
 			SetPassword = conSettings.Password;
 			SetTrustedConnection = conSettings.TrustedConnection;
+		}
+
+		public EButton CB
+		{
+			get { return _cb; }
+			set
+			{
+				_cb = value;
+				RaisePropertyChangedEvent("CB");
+			}
 		}
 
 		public int SelectedIndex
