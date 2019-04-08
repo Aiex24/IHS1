@@ -27,5 +27,10 @@ namespace Setup_Manager.Views
 				((MainWindow)Application.Current.MainWindow).UpdateLayout();
 			}));
 		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			//Implement code
+		}
 	}
 }

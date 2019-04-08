@@ -119,10 +119,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\co.png" />
+    <Resource Include="Resources\Files\License.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Files\License.txt" />
+    <Resource Include="Resources\Images\co.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

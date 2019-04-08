@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <TabControl Background="White" SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged}">
-                <TabItem Height="180" Focusable="False">
+                <TabItem Height="131" Focusable="False">
                     <TabItem.Header>
                         <Image Source="../Resources/Images/co.png"/>
                     </TabItem.Header>
@@ -57,8 +57,7 @@
                 </TabItem>
                 <TabItem Header="Install" >
                     <Grid>
-                        <!--<Button Command="{Binding InstallCommand, UpdateSourceTrigger=PropertyChanged}" Margin="276,359,276,185" Width="80" RenderTransformOrigin="-1.938,-1.92">Start
-                        </Button>-->
+                        <Button Margin="246,228,190,120" Click="Button_Click">Install</Button>
                     </Grid>
                 </TabItem>
 
