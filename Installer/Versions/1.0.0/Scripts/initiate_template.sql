@@ -13,7 +13,8 @@ as
 begin
 create table [General].Settings
 (
-	databaseId uniqueIdentifier,
+	databaseId uniqueIdentifier
+		DEFAULT NEWID(),
 	versionNumber varchar(10),
 );
 
