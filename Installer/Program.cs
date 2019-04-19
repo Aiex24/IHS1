@@ -31,6 +31,7 @@ namespace Installer
 
         private static void CheckVersion(string dbName)
         {
+            ConsoleUtils.Print($"The currently installed version is {currentVersion}", MessageOriginColor.System, true);
             var versionInfo = InstallationUtils.Installer.CheckVersion(dbName, connString, currentVersion);
             if (versionInfo != null)
             {

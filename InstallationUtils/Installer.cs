@@ -15,7 +15,6 @@ namespace InstallationUtils
                 while (versionReader.Read())
                 {
                     var versionUsedOnServer = (string)versionReader["VersionNumber"];
-                    ConsoleUtils.Print($"The currently installed version is {currentVersion}", MessageOriginColor.System, true);
                     var usingLatestVersion = int.Parse(versionUsedOnServer.Replace(".", "")) == int.Parse(currentVersion.Replace(".", ""));
                     return new Tuple<bool, string>(usingLatestVersion, currentVersion);     
                 }
