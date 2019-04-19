@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using UtilitiesMisc;
+using InstallationUtils;
 
 namespace Installer
 {
@@ -30,19 +31,14 @@ namespace Installer
 
         private static void CheckVersion(string dbName)
         {
-            var query = "GetCurrentVersion";
-            var versionReader = DbHandler.DbHandler.ExecuteReader(connString, query, true);
-            if (versionReader != null)
+            var versionInfo = InstallationUtils.Installer.CheckVersion(dbName, connString, currentVersion);
+            if (versionInfo != null)
             {
-                while (versionReader.Read())
+                var usingLatestVersion = versionInfo.Item1;
+                var versionUsedOnServer = versionInfo.Item2;
+                if (!usingLatestVersion)
                 {
-                    var versionUsedOnServer = (string)versionReader["VersionNumber"];
-                    ConsoleUtils.Print($"The currently installed version is {currentVersion}", MessageOriginColor.System, true);
-                    var usingLatestVersion = int.Parse(versionUsedOnServer.Replace(".", "")) == int.Parse(currentVersion.Replace(".", ""));
-                    if (!usingLatestVersion)
-                    {
-                        ConsoleUtils.Print($"WARNING: The currently installed version {versionUsedOnServer} is not the latest one available. Please upgrade to the latest version, {currentVersion}.", MessageOriginColor.System, true);
-                    }
+                    ConsoleUtils.Print($"WARNING: The currently installed version {versionUsedOnServer} is not the latest one available. Please upgrade to the latest version, {currentVersion}.", MessageOriginColor.System, true);
                 }
             }
 
@@ -61,8 +57,8 @@ namespace Installer
 
         private static void Install(string dbName)
         {
-            var result = DbHandler.DbHandler.ExecuteNonQuery(connString, "CREATE DATABASE {dbName}", false);
-            if (result > -1)
+            var installationSucceeded = InstallationUtils.Installer.Install(dbName, connString);
+            if (installationSucceeded)
             {
                 ConsoleUtils.Print($"Successfully created database \"{dbName}\".", MessageOriginColor.System, true);
             }

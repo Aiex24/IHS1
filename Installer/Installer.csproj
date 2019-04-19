@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <SSDTUnitTestPath Condition="'$(SSDTUnitTestPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\SQLDB</SSDTUnitTestPath>
   </PropertyGroup>
@@ -40,6 +40,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\DBHandler.csproj" />
     <ProjectReference Include="..\IHS1\IHS1.csproj" />
+    <ProjectReference Include="..\InstallationUtils\InstallationUtils.csproj" />
     <ProjectReference Include="..\UtilitiesMisc\UtilitiesMisc.csproj" />
   </ItemGroup>
   <PropertyGroup>
